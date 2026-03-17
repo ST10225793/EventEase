@@ -26,6 +26,6 @@ namespace EventEase.Models
 
         // Navigation property with ForeignKey attribute
         [ForeignKey("VenueId")]
-        public virtual Venue Venue { get; set; }
+        public virtual Venue? Venue { get; set; }
     }
 }
