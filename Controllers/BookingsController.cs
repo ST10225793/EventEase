@@ -49,8 +49,8 @@ namespace EventEase.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["EventID"] = new SelectList(_context.Events, "EventID", "EventID");
-            ViewData["VenueID"] = new SelectList(_context.Venues, "VenueID", "VenueID");
+            ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace EventEase.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookingID,EventID,VenueID,BookingDate")] Booking booking)
+        public async Task<IActionResult> Create([Bind("BookingId,EventId,VenueId,BookingDate")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace EventEase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventID"] = new SelectList(_context.Events, "EventID", "EventID", booking.EventId);
-            ViewData["VenueID"] = new SelectList(_context.Venues, "VenueID", "VenueID", booking.VenueId);
+            ViewData["EventID"] = new SelectList(_context.Events, "EventId", "EventId", booking.EventId);
+            ViewData["VenueID"] = new SelectList(_context.Venues, "VenueId", "VenueId", booking.VenueId);
             return View(booking);
         }
 
