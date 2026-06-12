@@ -1,0 +1,72 @@
+﻿@model EventEase.Models.Booking
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<div class="form-card text-center col-md-8 mx-auto mt-4">
+    <i class="bi bi-pencil-square" style="font-size: 3rem; color: #f06292;"></i>
+    <h1 class="form-title">Update Booking</h1>
+    <p class="form-subtitle">Adjusting the details for a magical event </p>
+
+    <div class="row text-start justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="BookingId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="CustomerName" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EventId" class="control-label fw-bold" style="color: #880e4f;">Event</label>
+                    <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                    <span asp-validation-for="EventId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    @* Safety Alert: Shows up if the date is the "default" 0001 date *@
+                    @if (Model.BookingDate == default(DateTime))
+                    {
+                        <div class="alert alert-danger rounded-4 p-2 mb-2" style="font-size: 0.85rem;">
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            <strong>Oopsie!</strong> The date didn't load properly. Please re-select it before saving! 🎀
+                        </div>
+                    }
+                    <label asp-for="BookingDate" class="control-label fw-bold" style="color: #880e4f;">Date of Booking</label>
+
+                    <input asp-for="BookingDate"
+                           type="date"
+                           class="form-control" />
+
+                    <span asp-validation-for="BookingDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="VenueId" class="control-label fw-bold" style="color: #880e4f;">Venue</label>
+                    <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-pink w-100">
+                        <i class="bi bi-check2-heart"></i> Save Changes 
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

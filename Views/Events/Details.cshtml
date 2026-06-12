@@ -1,0 +1,66 @@
+﻿@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="form-card col-md-8 mx-auto mt-4 text-center">
+    <div class="mb-4">
+        <i class="bi bi-magic" style="font-size: 3rem; color: #f06292;"></i>
+        <h1 class="form-title">@Model.EventName</h1>
+        <p class="form-subtitle">A special moment in the making </p>
+    </div>
+
+    <hr style="border-top: 2px dashed #fce4ec;" />
+
+    <div class="row text-start mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="p-3 rounded-4 shadow-sm" style="background-color: #fffafb; border-left: 5px solid #f06292;">
+                <h6 class="fw-bold" style="color: #880e4f;">
+                    <i class="bi bi-calendar-event-fill me-2"></i>Date & Time
+                </h6>
+                <p class="mb-0">@Model.EventDate.ToString("dddd, dd MMMM yyyy")</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="p-3 rounded-4 shadow-sm" style="background-color: #fffafb; border-left: 5px solid #f06292;">
+                <h6 class="fw-bold" style="color: #880e4f;">
+                    <i class="bi bi-geo-alt-fill me-2"></i>Venue
+                </h6>
+                <p class="mb-0">@(Model.Venue?.VenueName ?? "To be decided...")</p>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="p-4 rounded-4" style="background-color: #fff0f3; border: 1px solid #fce4ec;">
+                <h6 class="fw-bold" style="color: #880e4f;">
+                    <i class="bi bi-chat-heart-fill me-2"></i>About the Event
+                </h6>
+                <p class="mb-0 mt-2" style="line-height: 1.6;">
+                    @Model.Description
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-2">
+        <a asp-action="Edit" asp-route-id="@Model?.EventId" class="btn btn-pink px-4">
+            <i class="bi bi-pencil-heart"></i> Edit Details
+        </a>
+        <a asp-action="Index" class="btn-back">
+            <i class="bi bi-arrow-left-circle"></i> Back to Schedule
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Adding a tiny bit of extra flair for the info cards */
+    .shadow-sm {
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .shadow-sm:hover {
+            transform: translateY(-3px);
+        }
+</style>

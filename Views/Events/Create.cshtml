@@ -1,0 +1,64 @@
+﻿@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Create Magical Event";
+}
+
+<div class="form-card text-center col-md-8 mx-auto mt-4">
+    <i class="bi bi-stars" style="font-size: 3rem; color: #f06292;"></i>
+    <h1 class="form-title">Create Magical Event</h1>
+    <p class="form-subtitle">Let's schedule another beautiful moment! 🎀</p>
+
+    <div class="row text-start justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EventName" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="EventName" class="form-control" placeholder="E.g., Princess Birthday Gala" />
+                    <span asp-validation-for="EventName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EventDate" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="EventDate" class="form-control" type="date" />
+                    <span asp-validation-for="EventDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Describe the magic..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EventTypeId" class="form-label small fw-bold" style="color: #880e4f;">Event Category 🏷️</label>
+                    <select asp-for="EventTypeId" class="form-select border-pink" asp-items="ViewBag.EventTypeId" style="border-radius: 10px;">
+                        <option value="">-- Select a Category Type --</option>
+                    </select>
+                    <span asp-validation-for="EventTypeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="VenueId" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Create Event ✨" class="btn btn-pink w-100" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Back to the Schedule</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

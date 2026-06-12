@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Privacy & Data Policy";
+}
+
+<div class="container py-4" style="max-width: 900px; margin: 0 auto;">
+    <div class="form-card p-5 shadow-sm" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #fce4ec;">
+
+        <div class="text-center mb-5">
+            <i class="bi bi-shield-lock-fill" style="font-size: 3.5rem; color: #f06292;"></i>
+            <h1 class="form-title" style="font-weight: 700; color: #880e4f;">Privacy & Data Management Policy</h1>
+            <p class="form-subtitle text-muted">Data sovereignty and architectural security processing protocols ✨</p>
+            <hr class="my-3 mx-auto style-pink" style="max-width: 150px; border-top: 3px solid #f8bbd0; border-radius: 2px;">
+        </div>
+
+        <div class="policy-content" style="color: #4a148c; line-height: 1.7; font-size: 1rem;">
+
+            <div class="mb-4 p-3" style="background-color: #fff5f7; border-radius: 12px; border-left: 4px solid #f06292;">
+                <h5 class="fw-bold mb-2" style="color: #880e4f;"><i class="bi bi-folder-check"></i> 1. Scope of Information Collected</h5>
+                <p class="text-muted small mb-0">
+                    The EventEase ecosystem strictly collects operational data metrics necessary to perform lifecycle event booking coordinates. This includes stakeholder identities (<code style="color: #d81b60;">CustomerName</code>), facility logistical metrics (<code style="color: #d81b60;">Capacity</code>, <code style="color: #d81b60;">Location</code>), scheduling calendars, and unstructured binary media files (Venue Profile Images).
+                </p>
+            </div>
+
+            <div class="mb-4 p-3" style="background-color: #fff5f7; border-radius: 12px; border-left: 4px solid #f06292;">
+                <h5 class="fw-bold mb-2" style="color: #880e4f;"><i class="bi bi-cloud-haze2-fill"></i> 2. Cloud Infrastructure Processing</h5>
+                <p class="text-muted small mb-0">
+                    All collected operational profiles are securely managed through decoupled platform nodes inside Microsoft Azure. Relational attributes are maintained within an **Azure SQL Database** engine protected by firewall constraints. Unstructured media file streams bypass local server filesystems entirely and are pushed directly to **Azure Blob Storage** containers utilizing secure Uniform Resource Identifiers (URIs).
+                </p>
+            </div>
+
+            <div class="mb-4 p-3" style="background-color: #fff5f7; border-radius: 12px; border-left: 4px solid #f06292;">
+                <h5 class="fw-bold mb-2" style="color: #880e4f;"><i class="bi bi-fingerprint"></i> 3. Security Architecture & Identity Protection</h5>
+                <p class="text-muted small mb-0">
+                    To completely eliminate credential leakage risk, connection handshakes between the application compute tier (**Azure App Service**) and data storage engines are authenticated using cloud-native **Managed Identities**. No database access keys, account passwords, or server strings are maintained or exposed within our public source code repositories.
+                </p>
+            </div>
+
+            <div class="mb-4 p-3" style="background-color: #fff5f7; border-radius: 12px; border-left: 4px solid #f06292;">
+                <h5 class="fw-bold mb-2" style="color: #880e4f;"><i class="bi bi-trash-fill"></i> 4. Retention & Hard Deletion Cascades</h5>
+                <p class="text-muted small mb-0">
+                    Data profiles persist until explicitly removed by administrative booking specialists. In strict compliance with relational consistency safety measures, delete requests on venue storage properties are structurally intercepted by database foreign-key constraints (<code style="color: #d81b60;">DeleteBehavior.RestrictDefault</code>) to prevent accidental data truncation or orphaned structural rows.
+                </p>
+            </div>
+
+            <div class="text-center mt-5 text-muted small border-top pt-3">
+                <p><i class="bi bi-balloon-heart-fill" style="color: #f06292;"></i> Governed securely under modern cloud-native architectural compliance frameworks.</p>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Delete Event";
+}
+
+<div class="form-card col-md-8 mx-auto mt-4 text-center border-danger-subtle">
+    <div class="mb-4">
+        <i class="bi bi-patch-exclamation" style="font-size: 3rem; color: #dc3545;"></i>
+        <h1 class="form-title" style="color: #dc3545;">Cancel the Magic?</h1>
+        <p class="form-subtitle">Are you sure you want to delete <strong>@Model.EventName</strong>? </p>
+    </div>
+
+    <div class="p-4 rounded-4 mb-4" style="background-color: #fff5f5; border: 1px solid #f8d7da;">
+        <div class="row align-items-center">
+            <div class="col-md-2 text-center">
+                <i class="bi bi-calendar-x" style="font-size: 2.5rem; color: #880e4f;"></i>
+            </div>
+            <div class="col-md-10 text-start">
+                <h5 class="fw-bold mb-1" style="color: #880e4f;">@Model.EventName</h5>
+                <p class="mb-1 text-muted">@Model.Description</p>
+                <div class="d-flex gap-3 small">
+                    <span><i class="bi bi-clock me-1"></i>@Model.EventDate.ToString("dd MMM yyyy")</span>
+                    <span><i class="bi bi-geo-alt me-1"></i>@(Model.Venue?.VenueName ?? "No Venue Assigned")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning rounded-4 border-0 mb-4" style="background-color: #fff3cd; color: #856404; font-size: 0.9rem;">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        Poof! Once deleted, all booking details associated with this event will be lost forever.
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EventId" />
+
+        <div class="d-flex justify-content-center gap-3">
+            <button type="submit" class="btn btn-danger px-4 rounded-pill">
+                <i class="bi bi-trash3-fill me-2"></i>Yes, Delete Event
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary px-4 rounded-pill">
+                No, Keep the Plans! 
+            </a>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Styling to match the Venues Delete page */
+    .border-danger-subtle {
+        border: 2px solid #f8d7da !important;
+    }
+
+    .btn-danger {
+        background-color: #d32f2f;
+        border: none;
+        transition: transform 0.2s;
+    }
+
+        .btn-danger:hover {
+            background-color: #b71c1c;
+            transform: scale(1.05);
+        }
+</style>

@@ -1,0 +1,213 @@
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY & CORE LAYOUT
+   ========================================================================== */
+/* Force the modern, rounded Nunito aesthetic across every single tag */
+html, body, button, input, select, textarea,
+.form-title, .form-subtitle, .nav-link, .navbar-brand, .table, .badge {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Custom interactive ring colors matching your theme */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #f06292 !important;
+    border-color: #f06292 !important;
+}
+
+/* ==========================================================================
+   DASHBOARD & COLOR PALETTE CONFIGURATION
+   ========================================================================== */
+:root {
+    --primary-pink: #fce4ec; /* Light Pink Background elements */
+    --accent-pink: #f06292; /* Signature Vibrant Pink */
+    --dark-pink: #880e4f; /* Deep Crimson/Burgundy Text */
+}
+
+.dashboard-container {
+    padding: 2rem;
+    background-color: #fffafb;
+    border-radius: 15px;
+}
+
+/* ==========================================================================
+   CARDS & OPERATIONAL INTERFACE ELEMENTS
+   ========================================================================== */
+.stat-card {
+    border: none;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(240, 98, 146, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(240, 98, 146, 0.2);
+    }
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--accent-pink);
+}
+
+.card-body-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Custom Themed Form Control Buttons */
+.btn-pink {
+    background-color: var(--accent-pink);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border: none;
+}
+
+    .btn-pink:hover {
+        background-color: var(--dark-pink);
+        color: white;
+    }
+
+.btn-outline-pink {
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+    background-color: transparent;
+}
+
+    .btn-outline-pink:hover {
+        background-color: var(--accent-pink);
+        color: white;
+    }
+
+/* ==========================================================================
+   NAVIGATION BAR STYLING
+   ========================================================================== */
+.navbar {
+    background-color: white !important;
+    border-bottom: 2px solid var(--primary-pink);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--dark-pink) !important;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   FORMS & ADVANCED FILTER UTILITIES (PART 3)
+   ========================================================================== */
+.form-card {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(240, 98, 146, 0.1);
+    border: 1px solid #fce4ec;
+    margin-bottom: 2rem;
+}
+
+.form-title {
+    color: #880e4f;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form-subtitle {
+    color: #f06292;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Input Fields and Dropdowns Custom Layout */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #fce4ec;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #f06292;
+        box-shadow: 0 0 0 0.2rem rgba(240, 98, 146, 0.25);
+    }
+
+.border-pink {
+    border-color: #f8bbd0 !important;
+}
+
+/* Custom Background for Part 3 Parameters Dashboard Row */
+.backend-filter-panel {
+    transition: all 0.3s ease;
+}
+
+/* Switch customization to stay within the signature layout limits */
+.form-switch .form-check-input:checked {
+    background-color: var(--accent-pink) !important;
+    border-color: var(--accent-pink) !important;
+}
+
+/* ==========================================================================
+   UI UTILITIES & EXPERIENTIAL WORKFLOWS
+   ========================================================================== */
+.btn-back {
+    color: #f06292;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .btn-back:hover {
+        color: #880e4f;
+    }
+
+.text-danger {
+    color: #d81b60 !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.validation-summary-errors ul {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+}
+
+/* Hello Kitty Floating Animation Engine */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.hello-kitty-float {
+    width: 120px;
+    animation: float 4s ease-in-out infinite;
+    display: inline-block;
+    margin-bottom: 15px;
+}

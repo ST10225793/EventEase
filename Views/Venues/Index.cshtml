@@ -1,0 +1,152 @@
+﻿@model IEnumerable<EventEase.Models.Venue>
+
+@{
+    ViewData["Title"] = "Venue Gallery";
+}
+
+@* SweetAlert Logic for Deletion Restrictions *@
+@if (TempData["ToastError"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Action Restricted',
+            html: '@TempData["ToastError"]',
+            background: '#fffafb',
+            color: '#880e4f',
+            confirmButtonColor: '#f06292'
+        });
+    </script>
+}
+
+<div class="form-card mt-4">
+    <div class="text-center mb-4">
+        <i class="bi bi-bank2" style="font-size: 3rem; color: #f06292;"></i>
+        <h1 class="form-title">Venue Gallery</h1>
+        <p class="form-subtitle">Where all the magical memories are made! ✨</p>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-7">
+            <form asp-action="Index" method="get">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden border" style="border-color: #fce4ec !important;">
+                    <input type="text" name="searchString" value="@ViewData["CurrentFilter"]"
+                           class="form-control border-0 px-4" placeholder="Search by name or location..."
+                           style="background-color: #fffafb;" />
+                    <button type="submit" class="btn btn-pink px-4 border-0">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+                @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+                {
+                    <div class="text-center mt-2">
+                        <a asp-action="Index" class="text-decoration-none small" style="color: #f06292;">
+                            <i class="bi bi-x-circle"></i> Clear filters and show all venues
+                        </a>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 style="color: #880e4f;"><i class="bi bi-marching-ant"></i> Available Locations</h4>
+        <a asp-action="Create" class="btn btn-pink">
+            <i class="bi bi-plus-lg"></i> Register New Venue
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead style="background-color: #fffafb;">
+                <tr style="color: #880e4f;">
+                    <th>Preview</th>
+                    <th>@Html.DisplayNameFor(model => model.VenueName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Location)</th>
+                    <th>@Html.DisplayNameFor(model => model.Capacity)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="venue-thumb-wrapper">
+                                @if (!string.IsNullOrEmpty(item.ImageURL))
+                                {
+                                    <img src="@item.ImageURL" alt="Venue" class="venue-img-preview" />
+                                }
+                                else
+                                {
+                                    <div class="venue-img-placeholder">
+                                        <i class="bi bi-image" style="color: #fce4ec;"></i>
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td class="fw-bold" style="color: #f06292;">
+                            @Html.DisplayFor(modelItem => item.VenueName)
+                        </td>
+                        <td>
+                            <i class="bi bi-geo-alt me-1" style="color: #f06292;"></i>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        </td>
+                        <td>
+                            <span class="badge" style="background-color: #880e4f;">
+                                <i class="bi bi-people-fill me-1"></i>
+                                @Html.DisplayFor(modelItem => item.Capacity)
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.VenueId" class="btn btn-sm btn-outline-pink">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.VenueId" class="btn btn-sm btn-outline-secondary ms-1">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.VenueId" class="btn btn-sm btn-outline-danger ms-1">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Styling the image to look like a cute thumbnail */
+    .venue-thumb-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 3px solid #fce4ec;
+        box-shadow: 0 2px 5px rgba(240, 98, 146, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+    }
+
+    .venue-img-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .venue-img-placeholder {
+        font-size: 1.5rem;
+    }
+
+    /* Keep the input focus clean and pink */
+    .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(240, 98, 146, 0.25);
+        border-color: #f06292;
+    }
+</style>

@@ -1,0 +1,60 @@
+﻿@model EventEase.Models.Venue
+
+@{
+    ViewData["Title"] = "Add New Venue";
+}
+
+<div class="form-card text-center col-md-8 mx-auto mt-4">
+    <i class="bi bi-house-heart-fill" style="font-size: 3rem; color: #f06292;"></i>
+    <h1 class="form-title">Add a New Venue</h1>
+    <p class="form-subtitle">Where will the next magical event take place? 🎀</p>
+
+    <div class="row text-start justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="VenueName" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="VenueName" class="form-control" placeholder="e.g. The Pink Palace" />
+                    <span asp-validation-for="VenueName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Location" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="Location" class="form-control" placeholder="e.g. 123 Sakura Lane" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Capacity" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="Capacity" class="form-control" placeholder="How many guests?" />
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="control-label fw-bold" style="color: #880e4f;">Upload Venue Photo</label>
+                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                    <small class="text-muted">Pick a beautiful photo to store!</small>
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-pink w-100">
+                        Register Venue 
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Back to the Venue List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<EventEase.Models.BookingDetailsViewModel>
+
+@{
+    ViewData["Title"] = "Booking Management";
+}
+
+<div class="form-card mt-4">
+    <div class="text-center mb-4">
+        <i class="bi bi-journal-bookmark-fill" style="font-size: 3rem; color: #f06292;"></i>
+        <h1 class="form-title">Booking Management</h1>
+        <p class="form-subtitle">Consolidated view for our booking specialists! ✨</p>
+    </div>
+
+    <form asp-action="Index" method="get" class="p-3 mb-4" style="background-color: #fff5f7; border: 1px solid #fce4ec; border-radius: 15px;">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label small fw-bold" style="color: #880e4f;">Event Category</label>
+                <select name="eventTypeId" class="form-select border-pink" asp-items="ViewBag.EventTypeId" style="border-radius: 10px;">
+                    <option value="">-- All Categories --</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label small fw-bold" style="color: #880e4f;">From Date</label>
+                <input type="date" name="startDate" class="form-control border-pink" value="@ViewData["StartDate"]" style="border-radius: 10px;" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label small fw-bold" style="color: #880e4f;">To Date</label>
+                <input type="date" name="endDate" class="form-control border-pink" value="@ViewData["EndDate"]" style="border-radius: 10px;" />
+            </div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-pink w-100" style="border-radius: 10px; padding: 7px 15px;">
+                    <i class="bi bi-search"></i> Filter
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-50 d-flex align-items-center justify-content-center" style="border-radius: 10px;">
+                    Clear
+                </a>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input border-pink shadow-none" type="checkbox" name="availableOnly" id="availableOnly" value="true" @((bool)ViewData["AvailableOnly"] ? "checked" : "")>
+                    <label class="form-check-label small fw-bold" for="availableOnly" style="color: #880e4f; user-select: none; margin-left: 5px;">
+                        <i class="bi bi-building-check"></i> Show only bookings with available venues
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead style="background-color: #fff0f3;">
+                <tr style="color: #880e4f;">
+                    <th>Customer</th>
+                    <th>Event</th>
+                    <th>Category 🏷️</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@item.CustomerName</td>
+                            <td>@item.EventName</td>
+                            <td>
+                                <span class="badge rounded-pill bg-light text-dark px-2 py-1 border" style="border-color: #f8bbd0 !important; font-size: 0.8rem;">
+                                    @item.EventCategory
+                                </span>
+                            </td>
+                            <td>@item.EventDate.ToString("dd MMM yyyy")</td>
+                            <td>
+                                <span class="badge" style="background-color: #f06292; padding: 6px 12px; border-radius: 8px;">
+                                    @item.VenueName
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Edit" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-pink">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-secondary ms-1">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-danger ms-1">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">No bookings found matching your filter parameters. Time to invite some guests! 🎀</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Create" class="btn btn-pink">Create New Booking ✨</a>
+    </div>
+</div>

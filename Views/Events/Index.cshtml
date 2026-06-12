@@ -1,0 +1,79 @@
+﻿@model IEnumerable<EventEase.Models.Event>
+
+@{
+    ViewData["Title"] = "Events Schedule";
+}
+
+@* We can keep your TempData alert here, but remember we also set up the SweetAlert Toast in _Layout! *@
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-pink alert-dismissible fade show" role="alert">
+        <strong>Hold on! 🎀</strong> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="form-card mt-4">
+    <div class="text-center mb-4">
+        <i class="bi bi-calendar-heart" style="font-size: 3rem; color: #f06292;"></i>
+        <h1 class="form-title">Magical Events</h1>
+        <p class="form-subtitle">Manage all your scheduled moments in one place! ✨</p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 style="color: #880e4f;">Upcoming Schedule</h4>
+        <a asp-action="Create" class="btn btn-pink">
+            <i class="bi bi-plus-circle"></i> Create New Event
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead style="background-color: #fffafb;">
+                <tr style="color: #880e4f;">
+                    <th>@Html.DisplayNameFor(model => model.EventName)</th>
+                    <th>@Html.DisplayNameFor(model => model.EventDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>Venue</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold" style="color: #f06292;">
+                            @Html.DisplayFor(modelItem => item.EventName)
+                        </td>
+                        <td>
+                            <i class="bi bi-clock-history me-1"></i>
+                            @item.EventDate.ToString("dd MMM yyyy")
+                        </td>
+                        <td class="text-truncate" style="max-width: 200px;">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <span class="badge" style="background-color: #fce4ec; color: #880e4f; border: 1px solid #f06292;">
+                                <i class="bi bi-geo-alt-fill me-1"></i>
+                                @(item.Venue?.VenueName ?? "No Venue")
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-outline-pink">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-outline-secondary ms-1">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.EventId" class="btn btn-sm btn-outline-danger ms-1">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

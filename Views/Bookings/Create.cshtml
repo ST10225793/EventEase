@@ -1,0 +1,61 @@
+﻿@model EventEase.Models.Booking
+
+@{
+    ViewData["Title"] = "New Booking";
+}
+
+<div class="form-card text-center col-md-8 mx-auto mt-4">
+    <i class="bi bi-journal-plus" style="font-size: 3rem; color: #f06292;"></i>
+    <h1 class="form-title">Reserve a Moment</h1>
+    <p class="form-subtitle">Assigning a venue and event to a lucky customer! 🎀</p>
+
+    <div class="row text-start justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="CustomerName" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="CustomerName" class="form-control" placeholder="e.g. Kitty White" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EventId" class="control-label fw-bold" style="color: #880e4f;">Select Event</label>
+                    <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId">
+                        <option value="">-- Choose a Magical Event --</option>
+                    </select>
+                    <span asp-validation-for="EventId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="VenueId" class="control-label fw-bold" style="color: #880e4f;">Select Venue</label>
+                    <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId">
+                        <option value="">-- Choose a Beautiful Venue --</option>
+                    </select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="BookingDate" class="control-label fw-bold" style="color: #880e4f;"></label>
+                    <input asp-for="BookingDate" class="form-control" type="date" />
+                    <span asp-validation-for="BookingDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Confirm Booking ✨" class="btn btn-pink w-100" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Back to Booking Management</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
