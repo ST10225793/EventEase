@@ -38,6 +38,17 @@
                     <small class="text-muted">Pick a beautiful photo to store!</small>
                     <span asp-validation-for="ImageFile" class="text-danger"></span>
                 </div>
+                <div class="mb-4 p-3 rounded-3 border" style="background-color: #fffafb; border-color: #fce4ec !important;">
+    <div class="form-check form-switch d-flex align-items-center justify-content-between ps-0">
+        <div>
+            <label asp-for="Availability" class="form-label fw-bold mb-0" style="color: #880e4f;">
+                <i class="bi bi-building-check"></i> Initial Operational Status
+            </label>
+            <div class="text-muted small">Toggle off if the venue is currently closed or under maintenance.</div>
+        </div>
+        <div class="form-check form-switch fs-4">
+            <input class="form-check-input border-pink shadow-none" type="checkbox" asp-for="Availability" id="AvailabilitySwitch" checked />
+        </div
 
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-pink w-100">
