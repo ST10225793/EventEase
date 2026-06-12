@@ -11,5 +11,8 @@
         public int MaxGuests { get; set; }
 
         public string EventCategory { get; set; } = string.Empty;
+
+        // ADD THIS LINE FOR THE VENUE ACCESSIBILITY INTEGRATION 🚦
+        public bool IsVenueAvailable { get; set; }
     }
 }

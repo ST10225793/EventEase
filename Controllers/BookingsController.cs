@@ -70,7 +70,9 @@ namespace EventEase.Controllers
                     VenueLocation = b.Venue.Location,
                     MaxGuests = b.Venue.Capacity,
                     // Pass lookup categories cleanly onto the frontend interface
-                    EventCategory = b.Event.EventType != null ? b.Event.EventType.Name : "Unassigned"
+                    EventCategory = b.Event.EventType != null ? b.Event.EventType.Name : "Unassigned",
+                    IsVenueAvailable = b.Venue.Availability
+
                 }).ToListAsync();
 
             // Populate Dropdowns and preserve search states safely inside ViewData to display on the UI
