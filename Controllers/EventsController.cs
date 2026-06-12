@@ -51,7 +51,7 @@ namespace EventEase.Controllers
         // GET: Events/Create
         public IActionResult Create()
         {
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId");
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName");
             // PART 3 IMPLEMENTATION: Feed the seeded EventType lookup options to the view dropdown list
     ViewData["EventTypeId"] = new SelectList(_context.EventTypes, "EventTypeId", "Name");
             return View();
@@ -103,7 +103,9 @@ namespace EventEase.Controllers
             {
                 return NotFound();
             }
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId", @event.VenueId);
+            // Fix: Ensure the Edit screen also presents names instead of numeric primary keys
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName", @event.VenueId);
+            ViewData["EventTypeId"] = new SelectList(_context.EventTypes, "EventTypeId", "Name", @event.EventTypeId);
             return View(@event);
         }
 

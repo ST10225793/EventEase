@@ -40,9 +40,12 @@
                     <span asp-validation-for="EventTypeId" class="text-danger"></span>
                 </div>
 
-                <div class="form-group mb-4">
-                    <label asp-for="VenueId" class="control-label fw-bold" style="color: #880e4f;"></label>
-                    <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select>
+                <div class="mb-3">
+                    <label asp-for="VenueId" class="form-label small fw-bold" style="color: #880e4f;">Select Venue 🏢</label>
+                    <select asp-for="VenueId" class="form-select border-pink" asp-items="ViewBag.VenueId" style="border-radius: 10px;">
+                        <option value="">-- Choose a Location --</option>
+                    </select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group text-center">
